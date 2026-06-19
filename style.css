@@ -1,0 +1,77 @@
+html {
+  width: 100%;
+  height: 100%;
+  overscroll-behavior: none;
+}
+body {
+  width: 100vw;
+  background-color: black;
+  overscroll-behavior: none;
+}
+#loading {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.2s ease-out;
+  left: 0;
+  top: 0;
+  background-color: black;
+}
+#loading.loaded {
+  pointer-events:none;
+  opacity: 0;
+}
+#loading .spinnerContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.sheet-pages {
+  position: absolute;
+  top:0;
+  left:50%;
+  transform: translateX(-50%);
+}
+.sheet-page {
+  /* background-color: aqua; */
+  position: relative;
+  mix-blend-mode: normal;
+  width: fit-content;
+}
+.sheet-page img {
+  width: auto;
+  height: 100vh;
+}
+.bg-image {
+  position: absolute;
+  left:0;
+  top:0;
+  mix-blend-mode: screen; 
+  img {
+    mix-blend-mode: multiply;
+  }
+  .div-bg {
+    background-color: green;
+  }
+}
+.fg-image {
+  position: relative;
+  filter: invert(1);
+  img {
+    mix-blend-mode: screen;
+  }
+  .div-bg {
+    filter: invert(1);
+    background-color: yellow;
+  }
+}
+.div-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+}
