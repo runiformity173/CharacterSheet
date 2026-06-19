@@ -1,6 +1,5 @@
 html {
   width: 100%;
-  height: 100%;
   overscroll-behavior: none;
 }
 body {
@@ -36,14 +35,15 @@ body {
   transform: translateX(-50%);
 }
 .sheet-page {
+  z-index: -1;
   /* background-color: aqua; */
   position: relative;
   mix-blend-mode: normal;
   width: fit-content;
 }
 .sheet-page img {
-  width: auto;
-  height: 100vh;
+  width: 100vw;
+  height: auto;
 }
 .bg-image {
   position: absolute;
@@ -52,9 +52,6 @@ body {
   mix-blend-mode: screen; 
   img {
     mix-blend-mode: multiply;
-  }
-  .div-bg {
-    background-color: green;
   }
 }
 .fg-image {
@@ -65,13 +62,48 @@ body {
   }
   .div-bg {
     filter: invert(1);
-    background-color: yellow;
   }
 }
 .div-bg {
   position: absolute;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
+}
+.dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+}
+.text-box {
+  position: absolute;
+  border: 1px dashed white;
+  p {
+    font-size: clamp(1vw, 1.5rem, 3vw);
+  }
+}
+.centered-box p,.centered-box-half p {
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+}
+.left-centered-box p, .left-centered-box-half p {
+  position: absolute;
+  left:0;
+  top:50%;
+  transform: translateY(-50%);
+}
+.inline p, .inline-half p {
+  position: absolute;
+  bottom: -0.5vw;
+  left: 0;
+  margin-bottom: 0;
+}
+.centered-box-half p, .inline-half p, .left-centered-box-half p  {
+  font-size: clamp(1vw, 1rem, 1.5vw);
 }
