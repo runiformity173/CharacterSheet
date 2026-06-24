@@ -437,7 +437,7 @@ const textBoxLocations = [
         0.44257112750263433,
         0.057840917168475885,
         0,
-        0.5774499473129611,
+        0.6274499473129611,
         0.08061119981679273,
         0,
         "left-centered-box"
@@ -446,7 +446,7 @@ const textBoxLocations = [
         0.6274179983179142,
         0.057840917168475885,
         0,
-        0.7535744322960471,
+        0.7835744322960471,
         0.0799374473227251,
         0,
         "left-centered-box"
@@ -464,7 +464,7 @@ const textBoxLocations = [
         0.4440706476030278,
         0.09358530418270256,
         0,
-        0.575273338940286,
+        0.6274499473129611,
         0.11243234460838572,
         0,
         "left-centered-box"
@@ -473,7 +473,7 @@ const textBoxLocations = [
         0.6282590412111018,
         0.09163561034556292,
         0,
-        0.7544154751892347,
+        0.7835744322960471,
         0.11373214049981215,
         0,
         "left-centered-box"
@@ -584,7 +584,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.27152864826794004,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -593,7 +593,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.2886613595403962,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -602,7 +602,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.3057568525027079,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -611,7 +611,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.3228523454650196,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -620,7 +620,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.33998505673747575,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -629,7 +629,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.3569805496997875,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -638,7 +638,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.4171392116881674,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -647,7 +647,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.43418201455186234,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -656,7 +656,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.45122481741555726,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -665,7 +665,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.4682676202792522,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -674,7 +674,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.4853104231429471,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -683,7 +683,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.502353226006642,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -692,7 +692,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.5193960288703369,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -701,7 +701,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.5364388317340317,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -710,7 +710,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.5534816345977266,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -719,7 +719,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.5705244374614215,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -728,7 +728,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.5875672403251163,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -737,7 +737,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.6046100431888112,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -746,7 +746,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.621652846052506,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -755,7 +755,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.6386956489162009,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -764,7 +764,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.6557384517798958,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -773,7 +773,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.6727812546435906,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -782,7 +782,7 @@ const textBoxLocations = [
         0.20694444444444443,
         0.6898240575072855,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
     [
         0.1840277777777778,
@@ -791,6 +791,296 @@ const textBoxLocations = [
         0.20694444444444443,
         0.7068668603709803,
         0,
-        "left-centered-box-half"
+        "centered-box-half"
     ],
+        [
+        0.6798611111111111,
+        0.17440081163454646,
+        0,
+        0.9354166666666667,
+        0.23986819323274544,
+        0,
+        "free-text-half"
+    ],
+    [
+        0.6800554016620498,
+        0.2616788046522906,
+        0,
+        0.9376731301939059,
+        0.3162621135981672,
+        0,
+        "free-text-half"
+    ],
+    [
+        0.6800554016620498,
+        0.3323160279940132,
+        0,
+        0.9376731301939059,
+        0.38582907598016675,
+        0,
+        "free-text-half"
+    ],
+    [
+        0.6800554016620498,
+        0.40188299037601277,
+        0,
+        0.9349030470914127,
+        0.45218525548299704,
+        0,
+        "free-text-half"
+    ],
+    [
+        0.36426592797783935,
+        0.5704490915323963,
+        0,
+        0.6371191135734072,
+        0.71814510397418,
+        0,
+        "free-text-half"
+    ],
+    [
+        0.6703601108033241,
+        0.4869687366739968,
+        0,
+        0.9445983379501385,
+        0.9557430370327015,
+        0,
+        "free-text-half"
+    ],
+    [
+        0.05263157894736842,
+        0.7887823273159026,
+        0,
+        0.32825484764542934,
+        0.9653753856702091,
+        0,
+        "free-text-half"
+    ],
+    [
+        0.4362880886426593,
+        0.7481124108464259,
+        0,
+        0.6357340720221607,
+        0.9568132979924245,
+        0,
+        "free-text-half"
+    ]
 ];
+const indexToName = [
+    "inspiration",
+    "ac",
+    "initiative",
+    "speed",
+    "name",
+    "pb",
+    "passivePerception",
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha",
+    "strBonus",
+    "dexBonus",
+    "conBonus",
+    "intBonus",
+    "wisBonus",
+    "chaBonus",
+    "cp",
+    "sp",
+    "ep",
+    "gp",
+    "pp",
+    "hp",
+    "tempHp",
+    "hitDice",
+    "maxHp",
+    "classLevels",
+    "background",
+    "playerName",
+    "race",
+    "alignment",
+    "experiencePoints",
+    "maxHitDice",
+    "attackName1",
+    "attackBonus1",
+    "attackDamage1",
+    "attackName2",
+    "attackBonus2",
+    "attackDamage2",
+    "attackName3",
+    "attackBonus3",
+    "attackDamage3",
+    "strSave",
+    "dexSave",
+    "conSave",
+    "intSave",
+    "wisSave",
+    "chaSave",
+    "acrobatics",
+    "animalHandling",
+    "arcana",
+    "athletics",
+    "deception",
+    "history",
+    "insight",
+    "intimidation",
+    "investigation",
+    "medicine",
+    "nature",
+    "perception",
+    "performance",
+    "persuasion",
+    "religion",
+    "sleightOfHand",
+    "stealth",
+    "survival",
+    "personalityTraits",
+    "ideals",
+    "bonds",
+    "flaws",
+    "attacksAndSpellcasting",
+    "featuresAndTraits",
+    "otherProficienciesAndLanguages",
+    "equipment",
+];
+const dotIndexToName = [
+    "strSave",
+    "dexSave",
+    "conSave",
+    "intSave",
+    "wisSave",
+    "chaSave",
+    "acrobatics",
+    "animalHandling",
+    "arcana",
+    "athletics",
+    "deception",
+    "history",
+    "insight",
+    "intimidation",
+    "investigation",
+    "medicine",
+    "nature",
+    "perception",
+    "performance",
+    "persuasion",
+    "religion",
+    "sleightOfHand",
+    "stealth",
+    "survival",
+    "deathSaveSuccess1",
+    "deathSaveSuccess2",
+    "deathSaveSuccess3",
+    "deathSaveFailure1",
+    "deathSaveFailure2",
+    "deathSaveFailure3",
+];
+const skillToAbilityScore = {
+    "strSave":"str",
+    "dexSave":"dex",
+    "conSave":"con",
+    "intSave":"int",
+    "wisSave":"wis",
+    "chaSave":"cha",
+    "acrobatics":"dex",
+    "animalHandling":"wis",
+    "arcana":"int",
+    "athletics":"str",
+    "deception":"cha",
+    "history":"int",
+    "insight":"wis",
+    "intimidation":"cha",
+    "investigation":"int",
+    "medicine":"wis",
+    "nature":"int",
+    "perception":"wis",
+    "performance":"cha",
+    "persuasion":"cha",
+    "religion":"int",
+    "sleightOfHand":"dex",
+    "stealth":"dex",
+    "survival":"wis",
+};
+const fieldEditType = { // 0 is basic, -1 is unset, 1 is always editable
+    "inspiration": 1,
+    "ac": 0,
+    "initiative": -1,
+    "speed": 0,
+    "name": 0,
+    "pb": 0,
+    "passivePerception": -1,
+    "str": 0,
+    "dex": 0,
+    "con": 0,
+    "int": 0,
+    "wis": 0,
+    "cha": 0,
+    "strBonus": -1,
+    "dexBonus": -1,
+    "conBonus": -1,
+    "intBonus": -1,
+    "wisBonus": -1,
+    "chaBonus": -1,
+    "cp": 1,
+    "sp": 1,
+    "ep": 1,
+    "gp": 1,
+    "pp": 1,
+    "hp": 1,
+    "tempHp": 1,
+    "hitDice": 1,
+    "maxHp": 0,
+    "classLevels": -1,
+    "background": 0,
+    "playerName": 0,
+    "race": 0,
+    "alignment": 0,
+    "experiencePoints": 0,
+    "maxHitDice": 0,
+    "attackName1": -1,
+    "attackBonus1": -1,
+    "attackDamage1": -1,
+    "attackName2": -1,
+    "attackBonus2": -1,
+    "attackDamage2": -1,
+    "attackName3": -1,
+    "attackBonus3": -1,
+    "attackDamage3": -1,
+    "strSave": -1,
+    "dexSave": -1,
+    "conSave": -1,
+    "intSave": -1,
+    "wisSave": -1,
+    "chaSave": -1,
+    "acrobatics": -1,
+    "animalHandling": -1,
+    "arcana": -1,
+    "athletics": -1,
+    "deception": -1,
+    "history": -1,
+    "insight": -1,
+    "intimidation": -1,
+    "investigation": -1,
+    "medicine": -1,
+    "nature": -1,
+    "perception": -1,
+    "performance": -1,
+    "persuasion": -1,
+    "religion": -1,
+    "sleightOfHand": -1,
+    "stealth": -1,
+    "survival": -1,
+    "personalityTraits": 0,
+    "ideals": 0,
+    "bonds": 0,
+    "flaws": 0,
+    "attacksAndSpellcasting": 0,
+    "featuresAndTraits": 0,
+    "otherProficienciesAndLanguages": 0,
+    "equipment": 0,
+}
+const saveNames = Object.keys(skillToAbilityScore).filter(o=>o.includes("Save"));
+const skillNames = Object.keys(skillToAbilityScore).filter(o=>!o.includes("Save"));
+const nameToIndex = Object.fromEntries(indexToName.map((o,i)=>[o,i]));
+const dotNameToIndex = Object.fromEntries(dotIndexToName.map((o,i)=>[o,i]));

@@ -56,12 +56,9 @@ body {
 }
 .fg-image {
   position: relative;
-  filter: invert(1);
   img {
-    mix-blend-mode: screen;
-  }
-  .div-bg {
     filter: invert(1);
+    mix-blend-mode: multiply;
   }
 }
 .div-bg {
@@ -81,9 +78,37 @@ body {
 }
 .text-box {
   position: absolute;
-  border: 1px dashed white;
+  /* border: 1px dashed white; */
   p {
     font-size: clamp(1vw, 1.5rem, 3vw);
+    white-space: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    transition: 0.1s linear;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 32px,
+      black calc(100% - 32px),
+      transparent 100%
+    );
+    mask-size: calc(100% + 64px);
+    mask-position: center;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &.can-scroll-right {
+      mask-position: -64px 0;
+    }
+    &.can-scroll-left {
+      mask-position: 0 0;
+    }
+    &.can-scroll-left.can-scroll-right {
+      mask-size: 100%;
+      mask-position: 0 0;
+    }
   }
 }
 .centered-box p,.centered-box-half p {
@@ -106,4 +131,45 @@ body {
 }
 .centered-box-half p, .inline-half p, .left-centered-box-half p  {
   font-size: clamp(1vw, 1rem, 1.5vw);
+}
+#top-right-button {
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 6px 10px;
+}
+.ui-button {
+  color: var(--bs-dark);
+  background-color: var(--bs-light);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover, &:active {
+    filter: brightness(0.85);
+  }
+  &:hover:active {
+    filter: brightness(0.75);
+  }
+}
+.clickable-dot {
+  cursor: pointer;
+  &:hover {
+    transition: opacity 0.2s ease-out;
+    opacity:0.7;
+  }
+  &.dot-hidden:hover {
+    transition: opacity 0.2s ease-out;
+    opacity: 0.4;
+  }
+}
+.dot-hidden {
+  opacity: 0;
+}
+.editable-box {
+  cursor: pointer;
+  outline: var(--bs-light) 0.5px dotted;
+}
+.free-text-half p {
+  white-space: wrap !important;
+  font-size: clamp(1vw, 0.5rem, 0.5vw);
 }
