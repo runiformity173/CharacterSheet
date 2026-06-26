@@ -17,7 +17,7 @@ function openWeaponsModal() {
 function loadWeaponsIntoModal(weaponArray) {
     weaponList.innerHTML = "";
     weaponArray.forEach(addWeaponEditor);
-    updateAddButton();
+    updateAddWeaponButton();
 }
 
 function addWeaponEditor(weapon = {}) {
@@ -70,14 +70,14 @@ function addWeaponEditor(weapon = {}) {
     div.querySelector(".remove-weapon").addEventListener("click", () => {
         if (confirm("Are you sure you want to remove this weapon?")) {
             div.remove();
-            updateAddButton();
+            updateAddWeaponButton();
         }
     });
     weaponList.appendChild(div);
-    updateAddButton();
+    updateAddWeaponButton();
 }
 
-function updateAddButton() {
+function updateAddWeaponButton() {
     const count = weaponList.children.length;
     addWeaponBtn.disabled = count >= MAX_WEAPONS;
 }
@@ -113,7 +113,7 @@ function getWeaponsFromModal() {
 
 saveWeaponsBtn.addEventListener("click", () => {
     const newWeapons = getWeaponsFromModal();
-    character.data.weapons = newWeapons; // fix
+    character.data.weapons = newWeapons;
     weaponsModal.hide();
     character.updateDisplay();
 });

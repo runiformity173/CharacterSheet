@@ -1,10 +1,12 @@
 # Character Sheet
 ## TODO
 - figure out inspiration nonsense
-- class and level editor
 - extra bonuses
     - editor screen
     - functions
+- edit UI
+    - make edit mode (+ save) obvious
+    - standardize modal editor bootstrap colors
 
 ## Future features
 - money add or subtract

@@ -77,9 +77,54 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="levelsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Classes and Levels</h5>
+          <button type="button" class="close-button" data-bs-dismiss="modal">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 16 16"
+              fill="currentColor">
+              <path d="M2.146 2.146a.5.5 0 0 1 .708 0L8 7.293l5.146-5.147a.5.5 0 0 1
+                .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8
+                8.707l-5.146 5.147a.5.5 0 1 1-.708-.708L7.293 8
+                2.146 2.854a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="levelList"></div>
+          <button
+            id="addLevelBtn"
+            type="button"
+            class="btn btn-outline-primary mt-3">
+            Add Class
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="saveLevelsBtn">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="/bootstrap.js"></script>
   <script src="data.js"></script>
   <script src="weaponModal.js"></script>
+  <script src="classModal.js"></script>
   <script src="editing.js"></script>
   <script src="display.js"></script>
   <script src="script.js"></script>

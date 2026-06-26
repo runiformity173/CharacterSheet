@@ -29,6 +29,22 @@ function onEdit(field,newElement,mode) {
         const oldElement = document.getElementById("text-"+nameToIndex[EDITING_ELEMENT]).parentElement;
         oldElement.firstElementChild.contentEditable = false;
         oldElement.innerHTML = oldElement.innerHTML;
+        let content = oldElement.querySelector("p").innerHTML; // final save in case user's last interaction wasn't captured.
+        if (content == "") oldElement.firstElementChild.innerHTML = "&nbsp;";
+        if (content == "&nbsp;" || content == "<br>") content = "";
+        let edited = true;
+        if (mode == 0) {
+            character.data[field] = isNaN(Number(content || "hi")) ? content : Number(content);
+        } else {
+            edited = false;
+        }
+        if (edited) {
+            UNSAVED_CONTENT = true;
+            if (!EDITING) {
+                UNSAVED_CONTENT = false;
+                character.save(SLOT);
+            }
+        }
         character.updateDisplay();
     }
     EDITING_ELEMENT = field;
@@ -101,6 +117,9 @@ function loadBasicEditing() {
         container.addEventListener("click",openWeaponsModal);
         container.classList.add("editable-box");
     }
+    const classLevels = document.getElementById("text-28").parentElement;
+    classLevels.addEventListener("click",openLevelsModal);
+    classLevels.classList.add("editable-box");
 }
 function loadAlwaysEditing() {
     if (!EDITING) {
