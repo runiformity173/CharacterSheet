@@ -5,6 +5,8 @@ html {
 body {
   width: 100vw;
   background-color: black;
+  --bs-body-color: var(--bs-light);
+  --bs-body-bg: var(--bs-dark);
   overscroll-behavior: none;
 }
 #loading {
@@ -79,11 +81,13 @@ body {
 .text-box {
   position: absolute;
   /* border: 1px dashed white; */
-  p {
+  .text-box-text {
     font-size: clamp(1vw, 1.5rem, 3vw);
     white-space: nowrap;
     overflow-x: auto;
     max-width: 100%;
+    background-color: transparent;
+    color: var(--bs-body-color);
     scrollbar-width: none; 
     -ms-overflow-style: none;
     transition: 0.1s linear;
@@ -109,27 +113,30 @@ body {
       mask-size: 100%;
       mask-position: 0 0;
     }
+    &:focus {
+      outline: none;
+    }
   }
 }
-.centered-box p,.centered-box-half p {
+.centered-box .text-box-text,.centered-box-half .text-box-text {
   position: absolute;
   left:50%;
   top:50%;
   transform: translate(-50%, -50%);
 }
-.left-centered-box p, .left-centered-box-half p {
+.left-centered-box .text-box-text, .left-centered-box-half .text-box-text {
   position: absolute;
   left:0;
   top:50%;
   transform: translateY(-50%);
 }
-.inline p, .inline-half p {
+.inline .text-box-text, .inline-half .text-box-text {
   position: absolute;
   bottom: -0.5vw;
   left: 0;
   margin-bottom: 0;
 }
-.centered-box-half p, .inline-half p, .left-centered-box-half p  {
+.centered-box-half .text-box-text, .inline-half .text-box-text, .left-centered-box-half .text-box-text  {
   font-size: clamp(1vw, 1rem, 1.5vw);
 }
 #top-right-button {
@@ -139,8 +146,8 @@ body {
   padding: 6px 10px;
 }
 .ui-button {
-  color: var(--bs-dark);
-  background-color: var(--bs-light);
+  color: var(--bs-body-bg);
+  background-color: var(--bs-body-color);
   border-radius: 0.375rem;
   cursor: pointer;
   transition: 0.2s;
@@ -150,15 +157,18 @@ body {
   &:hover:active {
     filter: brightness(0.75);
   }
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 .clickable-dot {
   cursor: pointer;
+  transition: opacity 0.2s ease-out;
   &:hover {
-    transition: opacity 0.2s ease-out;
     opacity:0.7;
   }
   &.dot-hidden:hover {
-    transition: opacity 0.2s ease-out;
     opacity: 0.4;
   }
 }
@@ -167,9 +177,57 @@ body {
 }
 .editable-box {
   cursor: pointer;
-  outline: var(--bs-light) 0.5px dotted;
+  /* outline: var(--bs-light) 1.5px dotted; */
+  &:hover {
+    .text-box-text {
+      &:not(:focus) {
+        opacity: 0.7;
+      }
+    }
+    &:has(.text-box-text:focus) {
+      /* pointer-events: none; */
+      cursor:default;
+    }
+  }
 }
-.free-text-half p {
+.free-text-half .text-box-text {
   white-space: wrap !important;
   font-size: clamp(1vw, 0.5rem, 0.5vw);
+  height: 100%;
+}
+.modal {
+  --bs-border-color: var(--bs-light);
+}
+.weapon-editor {
+  border: 1px solid var(--bs-light);
+  border-radius: .5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.weapon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .75rem;
+}
+
+.weapon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+}
+
+@media (max-width: 768px) {
+  .weapon-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.close-button {
+  color: var(--bs-light);
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-left: auto;
 }

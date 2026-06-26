@@ -125,6 +125,6 @@ document.querySelector('.sheet-pages').addEventListener("mouseup",function(e) {
 window.addEventListener("resize", function () {
     loadUI();
 })
-document.addEventListener('selectstart', (e) => {
-  e.preventDefault();
-},{passive: false});
+// document.addEventListener('selectstart', (e) => {
+//   e.preventDefault();
+// },{passive: false});

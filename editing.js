@@ -2,32 +2,56 @@ let EDITING = false;
 let EDITING_ELEMENT = null;
 let UNSAVED_CONTENT = false;
 
+function editFocus(el) {
+    el.focus();
+    if (typeof window.getSelection != "undefined"
+            && typeof document.createRange != "undefined") {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        range.collapse(false);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else if (typeof document.body.createTextRange != "undefined") {
+        var textRange = document.body.createTextRange();
+        textRange.moveToElementText(el);
+        textRange.collapse(false);
+        textRange.select();
+    }
+}
+
 function onEdit(field,newElement,mode) {
-    if (field) newElement.firstElementChild.focus();
-    if (EDITING_ELEMENT == field) return;
-    if (!EDITING) {character.save(SLOT);}
+    if (EDITING_ELEMENT == field) {
+        editFocus(newElement.firstElementChild)
+        return;
+    }
     if (EDITING_ELEMENT) {
         const oldElement = document.getElementById("text-"+nameToIndex[EDITING_ELEMENT]).parentElement;
         oldElement.firstElementChild.contentEditable = false;
-        oldElement.outerHTML = oldElement.outerHTML;
+        oldElement.innerHTML = oldElement.innerHTML;
         character.updateDisplay();
     }
     EDITING_ELEMENT = field;
     if (!EDITING_ELEMENT) return;
     newElement.firstElementChild.contentEditable = true;
-    newElement.firstElementChild.focus();
+    editFocus(newElement.firstElementChild);
+    newElement.firstElementChild.addEventListener("click",function(e) {e.stopPropagation();})
     newElement.firstElementChild.addEventListener("keyup",function (e) {
         let content = newElement.querySelector("p").innerHTML;
         if (content == "") newElement.firstElementChild.innerHTML = "&nbsp;";
         if (content == "&nbsp;" || content == "<br>") content = "";
         let edited = true;
         if (mode == 0) {
-            character.data[field] = isNaN(Number(content)) ? content : Number(content);
+            character.data[field] = isNaN(Number(content || "hi")) ? content : Number(content);
         } else {
             edited = false;
         }
         if (edited) {
             UNSAVED_CONTENT = true;
+            if (!EDITING) {
+                UNSAVED_CONTENT = false;
+                character.save(SLOT);
+            }
         }
     },{});
 }
@@ -72,6 +96,11 @@ function loadBasicEditing() {
         dot.setAttribute("onclick", `toggleProficiency("${skill}", this)`);
         dot.classList.add("clickable-dot");
     }
+    for (let i = 35; i <= 43; i++)  { // weapon editing
+        const container = document.getElementById("text-"+i).parentElement;
+        container.addEventListener("click",openWeaponsModal);
+        container.classList.add("editable-box");
+    }
 }
 function loadAlwaysEditing() {
     if (!EDITING) {
@@ -79,6 +108,7 @@ function loadAlwaysEditing() {
             if (fieldEditType[field] != 1) continue;
             const box = document.getElementById("text-"+nameToIndex[field]).parentElement;
             box.setAttribute("onclick", `onEdit("${field}",this,0)`);
+            box.classList.add("editable-box");
             box.tabIndex = 1;
         }
     }
@@ -100,6 +130,7 @@ function toggleEditing() {
     } else {
         EDITING = true;
         UNSAVED_CONTENT = false;
+        EDITING_ELEMENT = null;
         document.getElementById("edit-icon").style.display = "none";
         document.getElementById("done-edit-icon").style.display = "";
     }
