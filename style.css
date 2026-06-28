@@ -198,11 +198,16 @@ body {
 .modal {
   --bs-border-color: var(--bs-light);
 }
-.weapon-editor, .level-editor {
+.weapon-editor {
   border: 1px solid var(--bs-light);
   border-radius: .5rem;
   padding: 1rem;
   margin-bottom: 1rem;
+}
+
+.level-editor {
+  border-radius: .5rem;
+  margin-bottom: 0.75rem;
 }
 
 .weapon-header, .level-header {
@@ -212,9 +217,14 @@ body {
   margin-bottom: .75rem;
 }
 
-.weapon-grid, .level-grid {
+.weapon-grid  {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+}
+.level-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 3rem;
   gap: .75rem;
 }
 

@@ -3,6 +3,7 @@ const MAX_WEAPONS = 3;
 
 const weaponList = document.getElementById("weaponList");
 const addWeaponBtn = document.getElementById("addWeaponBtn");
+const helperText = weaponList.parentElement.lastElementChild;
 const saveWeaponsBtn = document.getElementById("saveWeaponsBtn");
 
 const weaponsModal = new bootstrap.Modal(
@@ -28,8 +29,8 @@ function addWeaponEditor(weapon = {}) {
             <strong>Weapon</strong>
             <button
                 type="button"
-                class="btn btn-sm btn-outline-danger remove-weapon">
-                Remove
+                class="btn btn-sm btn-outline-light remove-weapon">
+                &ndash;
             </button>
         </div>
         <div class="weapon-grid">
@@ -50,7 +51,7 @@ function addWeaponEditor(weapon = {}) {
                 <label class="form-label">Damage Dice</label>
                 <input
                     class="form-control weapon-damage-dice"
-                    value="${weapon.attackDamageDice ?? "1d6"}">
+                    value="${weapon.attackDamageDice ?? ""}">
             </div>
             <div>
                 <label class="form-label">Damage Bonus</label>
@@ -80,6 +81,7 @@ function addWeaponEditor(weapon = {}) {
 function updateAddWeaponButton() {
     const count = weaponList.children.length;
     addWeaponBtn.disabled = count >= MAX_WEAPONS;
+    helperText.style.display = count >= MAX_WEAPONS ? "" : "none";
 }
 
 addWeaponBtn.addEventListener("click", () => {
@@ -87,7 +89,7 @@ addWeaponBtn.addEventListener("click", () => {
     addWeaponEditor({
         attackName: "",
         attackBonus: 0,
-        attackDamageDice: "1d6",
+        attackDamageDice: "",
         attackDamageBonus: 0,
         attackDamageType: ""
     });

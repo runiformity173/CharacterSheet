@@ -19,7 +19,28 @@ function editFocus(el) {
         textRange.select();
     }
 }
-
+function editField(newElement, mode, field) {
+    let content = newElement.querySelector("p").innerHTML;
+    console.log("content",content)
+    if (content == "" || content == "<br>") {
+        content = "&nbsp;"
+        newElement.firstElementChild.innerHTML = content;
+    }
+    content = content.replaceAll("&nbsp;","");
+    let edited = true;
+    if (mode == 0) {
+        character.data[field] = isNaN(Number(content || "hi")) ? content : Number(content);
+    } else {
+        edited = false;
+    }
+    if (edited) {
+        UNSAVED_CONTENT = true;
+        if (!EDITING) {
+            UNSAVED_CONTENT = false;
+            character.save(SLOT);
+        }
+    }
+}
 function onEdit(field,newElement,mode) {
     if (EDITING_ELEMENT == field) {
         editFocus(newElement.firstElementChild)
@@ -29,22 +50,7 @@ function onEdit(field,newElement,mode) {
         const oldElement = document.getElementById("text-"+nameToIndex[EDITING_ELEMENT]).parentElement;
         oldElement.firstElementChild.contentEditable = false;
         oldElement.innerHTML = oldElement.innerHTML;
-        let content = oldElement.querySelector("p").innerHTML; // final save in case user's last interaction wasn't captured.
-        if (content == "") oldElement.firstElementChild.innerHTML = "&nbsp;";
-        if (content == "&nbsp;" || content == "<br>") content = "";
-        let edited = true;
-        if (mode == 0) {
-            character.data[field] = isNaN(Number(content || "hi")) ? content : Number(content);
-        } else {
-            edited = false;
-        }
-        if (edited) {
-            UNSAVED_CONTENT = true;
-            if (!EDITING) {
-                UNSAVED_CONTENT = false;
-                character.save(SLOT);
-            }
-        }
+        editField(oldElement, mode, EDITING_ELEMENT);
         character.updateDisplay();
     }
     EDITING_ELEMENT = field;
@@ -52,24 +58,8 @@ function onEdit(field,newElement,mode) {
     newElement.firstElementChild.contentEditable = true;
     editFocus(newElement.firstElementChild);
     newElement.firstElementChild.addEventListener("click",function(e) {e.stopPropagation();})
-    newElement.firstElementChild.addEventListener("keyup",function (e) {
-        let content = newElement.querySelector("p").innerHTML;
-        if (content == "") newElement.firstElementChild.innerHTML = "&nbsp;";
-        if (content == "&nbsp;" || content == "<br>") content = "";
-        let edited = true;
-        if (mode == 0) {
-            character.data[field] = isNaN(Number(content || "hi")) ? content : Number(content);
-        } else {
-            edited = false;
-        }
-        if (edited) {
-            UNSAVED_CONTENT = true;
-            if (!EDITING) {
-                UNSAVED_CONTENT = false;
-                character.save(SLOT);
-            }
-        }
-    },{});
+    editField(newElement, mode, field);
+    newElement.firstElementChild.addEventListener("keyup",function (e) {editField(newElement, mode, field)});
 }
 function toggleProficiency(skill, el) {
     let enabled = !el.classList.contains("dot-hidden");

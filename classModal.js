@@ -13,7 +13,7 @@ function openLevelsModal() {
 }
 
 function loadLevelsIntoModal(levelArray) {
-    levelList.innerHTML = "";
+    levelList.innerHTML = `<div class="level-grid"><label class="form-label">Class</label><label class="form-label">Levels</label></div>`;
     for (const i in levelArray) {
         addLevelEditor({className: i, classLevel: levelArray[i]});
     }
@@ -24,27 +24,24 @@ function addLevelEditor(level = {}) {
     const div = document.createElement("div");
     div.className = "level-editor";
     div.innerHTML = `
-        <div class="level-header">
-            <strong>Level</strong>
-            <button
-                type="button"
-                class="btn btn-sm btn-outline-danger remove-level">
-                Remove
-            </button>
-        </div>
         <div class="level-grid">
             <div>
-                <label class="form-label">Class</label>
                 <input
                     class="form-control level-name"
                     value="${level.className ?? ""}">
             </div>
             <div>
-                <label class="form-label">Level</label>
                 <input
                     type="number"
                     class="form-control level-level"
                     value="${level.classLevel ?? 0}">
+            </div>
+            <div>
+                <button
+                    type="button"
+                    class="btn btn-sm btn-outline-light remove-level">
+                    &ndash;
+                </button>
             </div>
         </div>
     `;

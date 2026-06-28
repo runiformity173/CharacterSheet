@@ -51,6 +51,10 @@ class Character {
     }
     calculateClassString() {
         const levels = Object.entries(this.data.class);
+        if (levels.length == 0) {
+            this.display.classLevels = "N/A";
+            return;
+        }
         levels.sort((a,b)=>b[1]-a[1]);
         this.display.classLevels = levels.map(([c,l])=>c+" "+l).join(" / ");
     }
@@ -213,6 +217,7 @@ const character = new Character({
         "attackBonus1":["str","pb"],
         "attackDamageBonus2":["wis"],
         "attackBonus2":["wis","pb"],
+        "ac":["dex"],
     },
     inspiration:"",
     maxHitDice:"8d8",
