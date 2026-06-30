@@ -87,7 +87,8 @@ function toggleDot(name, el) {
     }
     character.data[name] = !enabled;
     character.updateDisplay();
-    character.save(SLOT);
+    if (!EDITING) character.save(SLOT);
+    else UNSAVED_CONTENT = true;
 }
 function loadBasicEditing() {
     for (const field in fieldEditType) {
@@ -145,3 +146,9 @@ function toggleEditing() {
     }
     loadUI();
 }
+window.addEventListener('beforeunload', (event) => {
+    if (UNSAVED_CONTENT) {
+        event.preventDefault();
+        event.returnValue = ''; 
+    }
+});

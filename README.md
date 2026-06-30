@@ -6,7 +6,6 @@
     - functions
 - edit UI
     - make edit mode (+ save) obvious
-    - standardize modal editor bootstrap colors
 
 ## Future features
 - money add or subtract

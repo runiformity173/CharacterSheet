@@ -1,26 +1,17 @@
 let BG_COLOR = "#002400";
 let FG_COLOR = "#ddddff";
 let SLOT = "";
-function setSlot() {
-    let slot;
-    if (window.location.hash.length < 2) slot = "default";
-    else slot = window.location.hash.slice(1);
-    if (slot != SLOT) {
-        SLOT = slot;
-        character.load(SLOT);
-    }
-}
-window.addEventListener("hashchange",setSlot);
 function load() {
     updateColors();
+    document.querySelector(".sheet-pages").innerHTML = "";
     loadPage("main_page");
+    loadPage("background_page");
+    // loadPage("spell_page");
     
     for (const page of document.getElementsByClassName("sheet-page")) {
         page.addEventListener("click",()=>{onEdit(null,page,-1)});
     }
-    // loadPage("background_page");
-    // loadPage("spell_page");
-    setTimeout(function(){loadUI();setSlot();},10);
+    setTimeout(function(){loadUI();character.load(SLOT);},10);
 }
 function updateColors(parent=document) {
     if (parent === document) {

@@ -139,7 +139,7 @@ body {
 .centered-box-half .text-box-text, .inline-half .text-box-text, .left-centered-box-half .text-box-text  {
   font-size: clamp(1vw, 1rem, 1.5vw);
 }
-#top-right-button {
+#topRightButton {
   position: fixed;
   top: 0.5rem;
   right: 0.5rem;
