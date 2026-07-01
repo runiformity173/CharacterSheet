@@ -145,6 +145,12 @@ body {
   right: 0.5rem;
   padding: 6px 10px;
 }
+#topRightSecondButton {
+  position: fixed;
+  top: calc(1rem + 36px);
+  right: 0.5rem;
+  padding: 6px 10px;
+}
 .ui-button {
   color: var(--bs-body-bg);
   background-color: var(--bs-body-color);
@@ -205,12 +211,12 @@ body {
   margin-bottom: 1rem;
 }
 
-.level-editor {
+.level-editor, .bonus-editor {
   border-radius: .5rem;
   margin-bottom: 0.75rem;
 }
 
-.weapon-header, .level-header {
+.weapon-header, .level-header, .bonus-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -222,14 +228,14 @@ body {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: .75rem;
 }
-.level-grid {
+.level-grid, .bonus-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 3rem;
   gap: .75rem;
 }
 
 @media (max-width: 768px) {
-  .weapon-grid, .level-grid {
+  .weapon-grid, .level-grid, .bonus-grid {
     grid-template-columns: 1fr;
   }
 }

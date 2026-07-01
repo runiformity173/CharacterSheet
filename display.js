@@ -111,7 +111,7 @@ document.querySelector('.sheet-pages').addEventListener("mouseup",function(e) {
     if (y < startY) {
         [y, startY] = [startY, y];
     }
-    console.log([startX/rect.width,startY/rect.height % 1, Math.floor(startY/rect.height),x/rect.width,y/rect.height % 1, Math.floor(y/rect.height),"free-text-half"]);
+    console.log([startX/rect.width,startY/rect.height % 1, Math.floor(startY/rect.height),x/rect.width,y/rect.height % 1, Math.floor(y/rect.height),"left-centered-box-half"]);
 });
 window.addEventListener("resize", function () {
     loadUI();

@@ -864,7 +864,124 @@ const textBoxLocations = [
         0.9568132979924245,
         0,
         "free-text-half"
-    ]
+    ],
+    [
+        0.05381727158948686,
+        0.1644100580270793,
+        1,
+        0.327909887359199,
+        0.44874274661508706,
+        1,
+        "free-text-half"
+    ],
+    [
+        0.3642052565707134,
+        0.1644100580270793,
+        1,
+        0.6658322903629537,
+        0.44487427466150864,
+        1,
+        "free-text-half"
+    ],
+    [
+        0.6871088861076345,
+        0.21760154738878135,
+        1,
+        0.918648310387985,
+        0.35783365570599623,
+        1,
+        "free-text-half"
+    ],
+    [
+        0.05506883604505632,
+        0.48646034816247585,
+        1,
+        0.3304130162703379,
+        0.9584139264990328,
+        1,
+        "free-text-half"
+    ],
+    [
+        0.36295369211514394,
+        0.47388781431334626,
+        1,
+        0.9449311639549437,
+        0.7321083172147003,
+        1,
+        "free-text-half"
+    ],
+    [
+        0.36295369211514394,
+        0.7620889748549322,
+        1,
+        0.9449311639549437,
+        0.9593810444874276,
+        1,
+        "free-text-half"
+    ],
+    [
+        0.6909722222222222,
+        0.1955846409900599,
+        1,
+        0.91875,
+        0.21436626685839566,
+        1,
+        "centered-box-half"
+    ],
+    [
+        0.43472222222222223,
+        0.06304002414780463,
+        1,
+        0.6152777777777778,
+        0.08413926499032875,
+        1,
+        "left-centered-box-half"
+    ],
+    [
+        0.6195244055068836,
+        0.06304002414780463,
+        1,
+        0.7709637046307884,
+        0.08413926499032875,
+        1,
+        "left-centered-box-half"
+    ],
+    [
+        0.7759699624530664,
+        0.06304002414780463,
+        1,
+        0.932415519399249,
+        0.08413926499032875,
+        1,
+        "left-centered-box-half"
+    ],
+    [
+        0.43429286608260326,
+        0.09719535783365574,
+        1,
+        0.6132665832290363,
+        0.11653771760154741,
+        1,
+        "left-centered-box-half"
+    ],
+    [
+        0.6182728410513142,
+        0.09719535783365574,
+        1,
+        0.769712140175219,
+        0.11653771760154741,
+        1,
+        "left-centered-box-half"
+    ],
+    [
+        0.7759699624530664,
+        0.09719535783365574,
+        1,
+        0.932415519399249,
+        0.11653771760154741,
+        1,
+        "left-centered-box-half"
+    ],
 ];
 const indexToName = [
     "inspiration",
@@ -943,6 +1060,19 @@ const indexToName = [
     "featuresAndTraits",
     "otherProficienciesAndLanguages",
     "equipment",
+    "characterAppearance",
+    "alliesAndOrganizations",
+    "factionSymbol",
+    "characterBackstory",
+    "additionalFeatures",
+    "treasure",
+    "factionName",
+    "age",
+    "height",
+    "weight",
+    "eyes",
+    "skin",
+    "hair",
 ];
 const dotIndexToName = [
     "strSave",
@@ -1079,6 +1209,19 @@ const fieldEditType = { // 0 is basic, -1 is unset, 1 is always editable
     "featuresAndTraits": 0,
     "otherProficienciesAndLanguages": 0,
     "equipment": 0,
+    "characterAppearance": 0,
+    "alliesAndOrganizations": 0,
+    "characterBackstory": 0,
+    "additionalFeatures": 0,
+    "treasure": 0,
+    "factionSymbol": -1,
+    "factionName": 0,
+    "age": 0,
+    "height": 0,
+    "weight": 0,
+    "eyes": 0,
+    "skin": 0,
+    "hair": 0,
 }
 const saveNames = Object.keys(skillToAbilityScore).filter(o=>o.includes("Save"));
 const skillNames = Object.keys(skillToAbilityScore).filter(o=>!o.includes("Save"));

@@ -21,7 +21,6 @@ function editFocus(el) {
 }
 function editField(newElement, mode, field) {
     let content = newElement.querySelector("p").innerHTML;
-    console.log("content",content)
     if (content == "" || content == "<br>") {
         content = "&nbsp;"
         newElement.firstElementChild.innerHTML = content;
@@ -137,12 +136,14 @@ function toggleEditing() {
         EDITING_ELEMENT = null;
         document.getElementById("edit-icon").style.display = "";
         document.getElementById("done-edit-icon").style.display = "none";
+        document.getElementById("topRightSecondButton").style.display = "none";
     } else {
         EDITING = true;
         UNSAVED_CONTENT = false;
         EDITING_ELEMENT = null;
         document.getElementById("edit-icon").style.display = "none";
         document.getElementById("done-edit-icon").style.display = "";
+        document.getElementById("topRightSecondButton").style.display = "";
     }
     loadUI();
 }
