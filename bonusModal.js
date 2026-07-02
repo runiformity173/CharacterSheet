@@ -39,8 +39,11 @@ function addBonusEditor(bonus = {}) {
                         type="text"
                         class="form-control bonus-search"
                         placeholder="Add bonus...">
-                    <div class="list-group option-menu position-absolute w-100 mt-1"
-                        style="z-index:1056; display:none; max-height:200px; overflow:auto;">
+                    <div class="option-menu position-absolute w-100 mt-1"
+                        style="z-index:1000; display:none; overflow:hidden; border-radius:var(--bs-border-radius); border: 1px solid var(--bs-body-color);">
+                        <div class="list-group" style="overflow:auto;max-height:200px;border:none;">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,10 +120,8 @@ function renderMultiSelect(editor) {
             <span class="remove-tag ms-1">&times;</span>
         `;
         badge.querySelector(".remove-tag").onclick = () => {
-            editor._selectedBonuses =
-                editor._selectedBonuses.filter(x => x !== key);
+            editor._selectedBonuses.splice(editor._selectedBonuses.indexOf(key),1);
             renderMultiSelect(editor);
-            search.dispatchEvent(new Event("input"));
         };
         selectedContainer.appendChild(badge);
     }
@@ -130,7 +131,7 @@ function renderMultiSelect(editor) {
     }
     function updateMenu() {
         const filter = search.value.trim().toLowerCase();
-        menu.innerHTML = "";
+        menu.firstElementChild.innerHTML = "";
         let first = null;
         for (const key in bonusOptions) {
             const text = bonusOptions[key];
@@ -144,13 +145,12 @@ function renderMultiSelect(editor) {
                 editor._selectedBonuses.push(key);
                 search.value = "";
                 renderMultiSelect(editor);
-                search.focus();
             };
             if (!first)
                 first = btn;
-            menu.appendChild(btn);
+            menu.firstElementChild.appendChild(btn);
         }
-        menu.style.display = menu.children.length ? "" : "none";
+        menu.style.display = menu.firstElementChild.children.length ? "" : "none";
         editor._firstSearchResult = first;
     }
     search.oninput = updateMenu;
@@ -165,7 +165,7 @@ function renderMultiSelect(editor) {
         }
     };
     search.onblur = () => {
-        setTimeout(() => menu.style.display = "none", 150);
+        setTimeout(() => menu.style.display = "none", 100);
     };
 }
 

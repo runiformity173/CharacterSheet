@@ -299,6 +299,14 @@ body {
 }
 .list-group-item.list-group-item-action {
   color: var(--bs-body-color);
+  border-left: none;
+  border-right: none;
+  &:first-child {
+    border-top: none;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
   &:hover {
     background-color: var(--bs-body-color);
     color: var(--bs-body-bg);
