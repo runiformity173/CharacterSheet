@@ -33,10 +33,16 @@ function addBonusEditor(bonus = {}) {
                     value="${bonus.bonusTarget ?? ""}">
             </div>
             <div>
-                <input
-                    type="number"
-                    class="form-control bonus-bonus"
-                    value="${bonus.bonusSource ?? 0}">
+                <div class="selected-tags d-flex flex-wrap gap-1 mb-2"></div>
+                <div class="position-relative">
+                    <input
+                        type="text"
+                        class="form-control bonus-search"
+                        placeholder="Add bonus...">
+                    <div class="list-group option-menu position-absolute w-100 mt-1"
+                        style="z-index:1056; display:none; max-height:200px; overflow:auto;">
+                    </div>
+                </div>
             </div>
             <div>
                 <button
@@ -47,8 +53,12 @@ function addBonusEditor(bonus = {}) {
             </div>
         </div>
     `;
+    initializeMultiSelect(
+        div,
+        bonus.bonusSource ?? []
+    );
     div.querySelector(".remove-bonus").addEventListener("click", () => {
-        if (confirm("Are you sure you want to remove this class?")) {
+        if (confirm("Are you sure you want to remove this additional bonus?")) {
             div.remove();
             updateAddBonusButton();
         }
@@ -70,23 +80,120 @@ addBonusBtn.addEventListener("click", () => {
 });
 
 function getBonusesFromModal() {
-    const arr = [...bonusList.querySelectorAll(".bonus-editor")].map(editor => ({
-        className: editor.querySelector(".bonus-name").value.trim(),
-        classBonus: parseInt(
-            editor.querySelector(".bonus-bonus").value,
-            10
-        ) || 0,
-    }));
-    const classDict = {};
-    for (const i of arr) {
-        classDict[i.className] = i.classBonus;
-    }
-    return classDict;
+    const bonusDict = {};
+    bonusList.querySelectorAll(".bonus-editor").forEach(editor => {
+        const target = editor.querySelector(".bonus-name").value.trim();
+        if (!target) return;
+        bonusDict[target] = editor._selectedBonuses;
+    });
+    return bonusDict;
 }
 
 saveBonusesBtn.addEventListener("click", () => {
     const newBonuses = getBonusesFromModal();
-    character.data.class = newBonuses;
+    character.data.additionalBonuses = newBonuses;
     bonusesModal.hide();
     character.updateDisplay();
 });
+
+// This multiselect code is mostly Chat...
+
+function initializeMultiSelect(editor, selected = []) {
+    editor._selectedBonuses = [...selected];
+    renderMultiSelect(editor);
+}
+
+function renderMultiSelect(editor) {
+    const selectedContainer = editor.querySelector(".selected-tags");
+    const menu = editor.querySelector(".option-menu");
+    const search = editor.querySelector(".bonus-search");
+    const selected = editor._selectedBonuses;
+    selectedContainer.innerHTML = "";
+    for (const key of selected) {
+        const badge = document.createElement("span");
+        badge.className = "badge";
+        badge.innerHTML = `
+            ${bonusOptions[key]}
+            <span class="remove-tag ms-1">&times;</span>
+        `;
+        badge.querySelector(".remove-tag").onclick = () => {
+            editor._selectedBonuses =
+                editor._selectedBonuses.filter(x => x !== key);
+            renderMultiSelect(editor);
+            search.dispatchEvent(new Event("input"));
+        };
+        selectedContainer.appendChild(badge);
+    }
+    if (!selected.length) {
+        selectedContainer.innerHTML =
+            '<span class="text-secondary fst-italic">None selected</span>';
+    }
+    function updateMenu() {
+        const filter = search.value.trim().toLowerCase();
+        menu.innerHTML = "";
+        let first = null;
+        for (const key in bonusOptions) {
+            const text = bonusOptions[key];
+            if (!text.toLowerCase().includes(filter))
+                continue;
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "list-group-item list-group-item-action";
+            btn.textContent = text;
+            btn.onclick = () => {
+                editor._selectedBonuses.push(key);
+                search.value = "";
+                renderMultiSelect(editor);
+                search.focus();
+            };
+            if (!first)
+                first = btn;
+            menu.appendChild(btn);
+        }
+        menu.style.display = menu.children.length ? "" : "none";
+        editor._firstSearchResult = first;
+    }
+    search.oninput = updateMenu;
+    search.onfocus = updateMenu;
+    search.onkeydown = e => {
+        if (e.key === "Enter" && editor._firstSearchResult) {
+            e.preventDefault();
+            editor._firstSearchResult.click();
+        }
+        if (e.key === "Escape") {
+            menu.style.display = "none";
+        }
+    };
+    search.onblur = () => {
+        setTimeout(() => menu.style.display = "none", 150);
+    };
+}
+
+const bonusOptions = {
+    "pb":"Proficiency Bonus",
+    "str": "Strength",
+    "dex": "Dexterity",
+    "con": "Constitution",
+    "int": "Intelligence",
+    "wis": "Wisdom",
+    "cha": "Charisma",
+    "acrobatics":"Acrobatics",
+    "animalHandling":"Animal Handling",
+    "arcana":"Arcana",
+    "athletics":"Athletics",
+    "deception":"Deception",
+    "history":"History",
+    "insight":"Insight",
+    "intimidation":"Intimidation",
+    "investigation":"Investigation",
+    "medicine":"Medicine",
+    "nature":"Nature",
+    "perception":"Perception",
+    "performance":"Performance",
+    "persuasion":"Persuasion",
+    "religion":"Religion",
+    "sleightOfHand":"Sleight of Hand",
+    "stealth":"Stealth",
+    "survival":"Survival",
+    "dexMax2":"Dexterity (Max +2)",
+};

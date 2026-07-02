@@ -7,6 +7,7 @@ body {
   background-color: black;
   --bs-body-color: var(--bs-light);
   --bs-body-bg: var(--bs-dark);
+  --bs-dropdown-color: var(--bs-light);
   overscroll-behavior: none;
 }
 #loading {
@@ -246,4 +247,71 @@ body {
   background: none;
   cursor: pointer;
   margin-left: auto;
+}
+.selected-tags:empty::before {
+  content: "None selected";
+  color: var(--bs-body-color);
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.badge {
+  font-size: 0.95rem;
+  padding: 0.55em 0.75em;
+  background-color: var(--bs-body-color);
+  color: var(--bs-body-bg);
+}
+
+.remove-tag {
+  cursor: pointer;
+  margin-left: .45em;
+  font-weight: bold;
+  user-select: none;
+}
+.btn-outline-light {
+  --bs-btn-color: var(--bs-body-color);
+  --bs-btn-border-color: var(--bs-body-color);
+  --bs-btn-hover-color: var(--bs-body-bg);
+  --bs-btn-hover-bg: var(--bs-body-color);
+  --bs-btn-hover-border-color: var(--bs-body-color);
+  --bs-btn-focus-shadow-rgb: none;
+  --bs-btn-active-color: var(--bs-body-bg);
+  --bs-btn-active-bg: var(--bs-body-color);
+  --bs-btn-active-border-color: var(--bs-body-color);
+  --bs-btn-active-shadow: none; /* inset 0 3px 5px rgba(0, 0, 0, 0.125);*/
+  --bs-btn-disabled-color: var(--bs-body-color);
+  --bs-btn-disabled-border-color: var(--bs-body-color);
+}
+.btn-light {
+  --bs-btn-color: var(--bs-body-bg);
+  --bs-btn-bg: var(--bs-body-color);
+  --bs-btn-border-color: var(--bs-body-bg);
+  --bs-btn-hover-color: var(--bs-body-color);
+  --bs-btn-hover-bg: var(--bs-body-bg);
+  --bs-btn-hover-border-color: var(--bs-body-color);
+  --bs-btn-focus-shadow-rgb: none;
+  --bs-btn-active-color: var(--bs-body-color);
+  --bs-btn-active-bg: var(--bs-body-bg);
+  --bs-btn-active-border-color: var(--bs-body-bg);
+  --bs-btn-active-shadow: none; /* inset 0 3px 5px rgba(0, 0, 0, 0.125);*/
+  --bs-btn-disabled-color: var(--bs-body-bg);
+  --bs-btn-disabled-border-color: var(--bs-body-bg);
+}
+.list-group-item.list-group-item-action {
+  color: var(--bs-body-color);
+  &:hover {
+    background-color: var(--bs-body-color);
+    color: var(--bs-body-bg);
+  }
+}
+input.form-control.bonus-search {
+  width: auto;
+  color: var(--bs-body-color);
+  &:focus {
+    box-shadow: color-mix(in srgb, var(--bs-body-color) 25%, transparent) 0px 0px 0px 0.25rem !important;
+    border-color: color-mix(in srgb, var(--bs-body-color) 75%, var(--bs-body-bg));
+  }
+  &::placeholder {
+    color: var(--bs-body-color);
+  }
 }

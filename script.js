@@ -102,6 +102,7 @@ class Character {
         }
     }
     calculateAdditionalBonuses() {
+        this.bonuses["dexMax2"] = Math.min(this.bonuses["dex"],2)
         for (const modified in this.data.additionalBonuses) {
             if (modified == "ALL") continue;
             if (modified == "SKILLS") continue;
