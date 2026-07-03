@@ -13,22 +13,9 @@ function load() {
     }
     setTimeout(function(){loadUI();character.load(SLOT);},10);
 }
-function updateColors(parent=document) {
-    if (parent === document) {
-        document.body.style.backgroundColor = BG_COLOR;
-        document.body.style.color = FG_COLOR;
-        document.documentElement.style.setProperty('--bs-light', FG_COLOR);
-        document.documentElement.style.setProperty('--bs-dark', BG_COLOR);
-    }
-    for (const el of parent.querySelectorAll(".fg-image .div-bg")) {
-        el.style.backgroundColor = FG_COLOR;
-    }
-    for (const el of parent.querySelectorAll(".bg-image .div-bg")) {
-        el.style.backgroundColor = BG_COLOR;
-    }
-    for (const el of parent.querySelectorAll(".dot")) {
-        el.style.backgroundColor = FG_COLOR;
-    }
+function updateColors() {
+    document.documentElement.style.setProperty('--bs-light', FG_COLOR);
+    document.documentElement.style.setProperty('--bs-dark', BG_COLOR);
 }
 function loadPage(image) {
     const el = document.createElement("div");
@@ -44,7 +31,6 @@ function loadPage(image) {
       </div>
     `;
     document.querySelector(".sheet-pages").appendChild(el);
-    updateColors(el);
 }
 function loadDots() {
     for (const dot of document.querySelectorAll(".dot")) dot.remove();
@@ -61,7 +47,6 @@ function loadDots() {
         const size = px*s;
         dot.style.width = size+"px";
         dot.style.height = size+"px";
-        dot.style.backgroundColor = FG_COLOR;
         document.querySelector(".sheet-pages").appendChild(dot);
     }
 }
@@ -94,6 +79,7 @@ function loadUI() {
         loadBasicEditing();
     }
     loadAlwaysEditing();
+    loadAdders();
 }
 let startX, startY;
 document.querySelector('.sheet-pages').addEventListener("mousedown",function(e) {

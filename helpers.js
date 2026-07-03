@@ -1,4 +1,5 @@
 const CHECK_MOD = 2147483647;
+let currentChecksum;
 function getChecksum(object) {
     let total = 0;
     if (Array.isArray(object)) {

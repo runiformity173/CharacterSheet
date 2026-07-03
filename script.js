@@ -199,12 +199,14 @@ class Character {
         const cur = JSON.parse(window.localStorage.getItem("character") || "{}");
         cur[slot] = this.data;
         window.localStorage.setItem("character",JSON.stringify(cur));
+        currentChecksum = getChecksum(this.data);
     }
     load(slot) {
         const cur = JSON.parse(window.localStorage.getItem("character") || "{}");
         if (slot in cur) {
             this.data = cur[slot];
             this.updateDisplay();
+            currentChecksum = getChecksum(this.data);
         }
     }
 }

@@ -156,29 +156,29 @@ const dotLocations = [
         0
     ],
     [
-    0.614765100671141,
-    0.41281288743750355,
-    0.013422818791946308,
-    0
+        0.614765100671141,
+        0.41281288743750355,
+        0.013422818791946308,
+        0
     ],
     [
-    0.5728120805369128,
-    0.4314828170201042,
-    0.013422818791946308,
-    0
-],
-[
-    0.5938885906040268,
-    0.4314828170201042,
-    0.013422818791946308,
-    0
-],
-[
-    0.614765100671141,
-    0.4314828170201042,
-    0.013422818791946308,
-    0
-],
+        0.5728120805369128,
+        0.4314828170201042,
+        0.013422818791946308,
+        0
+    ],
+    [
+        0.5938885906040268,
+        0.4314828170201042,
+        0.013422818791946308,
+        0
+    ],
+    [
+        0.614765100671141,
+        0.4314828170201042,
+        0.013422818791946308,
+        0
+    ],
 ]
 const textBoxLocations = [
     [
@@ -428,7 +428,7 @@ const textBoxLocations = [
         0.4751892346509672,
         0.24761111731673385,
         0,
-        0.6215306980656014,
+        0.5932415519399249,
         0.2625587700681377,
         0,
         "left-centered-box-half"
@@ -1132,7 +1132,7 @@ const skillToAbilityScore = {
     "stealth":"dex",
     "survival":"wis",
 };
-const fieldEditType = { // 0 is basic, -1 is unset, 1 is always editable, 2 is adding to bonuses
+const fieldEditType = { // 0 is basic, -1 is unset, 1 is always editable, 2 is adding to bonuses, 3 is 1 but also increment
     "inspiration": 1,
     "ac": 0,
     "initiative": 2,
@@ -1152,13 +1152,13 @@ const fieldEditType = { // 0 is basic, -1 is unset, 1 is always editable, 2 is a
     "intBonus": -1,
     "wisBonus": -1,
     "chaBonus": -1,
-    "cp": 1,
-    "sp": 1,
-    "ep": 1,
-    "gp": 1,
-    "pp": 1,
-    "hp": 1,
-    "tempHp": 1,
+    "cp": 3,
+    "sp": 3,
+    "ep": 3,
+    "gp": 3,
+    "pp": 3,
+    "hp": 3,
+    "tempHp": 3,
     "hitDice": 1,
     "maxHp": 0,
     "classLevels": -1,

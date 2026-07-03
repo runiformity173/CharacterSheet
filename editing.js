@@ -1,6 +1,5 @@
 let EDITING = false;
 let EDITING_ELEMENT = null;
-let UNSAVED_CONTENT = false;
 
 function editFocus(el) {
     el.focus();
@@ -33,9 +32,7 @@ function editField(newElement, mode, field) {
         edited = false;
     }
     if (edited) {
-        UNSAVED_CONTENT = true;
         if (!EDITING) {
-            UNSAVED_CONTENT = false;
             character.save(SLOT);
         }
     }
@@ -75,7 +72,6 @@ function toggleProficiency(skill, el) {
         el.classList.remove("dot-hidden");
     }
     character.updateDisplay();
-    UNSAVED_CONTENT = true;
 }
 function toggleDot(name, el) {
     let enabled = !el.classList.contains("dot-hidden");
@@ -87,7 +83,6 @@ function toggleDot(name, el) {
     character.data[name] = !enabled;
     character.updateDisplay();
     if (!EDITING) character.save(SLOT);
-    else UNSAVED_CONTENT = true;
 }
 function loadBasicEditing() {
     for (const field in fieldEditType) {
@@ -114,7 +109,7 @@ function loadBasicEditing() {
 function loadAlwaysEditing() {
     if (!EDITING) {
         for (const field in fieldEditType) {
-            if (fieldEditType[field] != 1) continue;
+            if (fieldEditType[field] != 1 && fieldEditType[field] != 3) continue;
             const box = document.getElementById("text-"+nameToIndex[field]).parentElement;
             box.setAttribute("onclick", `onEdit("${field}",this,0)`);
             box.classList.add("editable-box");
@@ -127,19 +122,39 @@ function loadAlwaysEditing() {
         dot.classList.add("clickable-dot");
     }
 }
-
+function addOrSubtractClicked(field, mult) {
+    const amount = Number(prompt("How much?"));
+    if (isNaN(amount)) return;
+    character.data[field] += mult*amount;
+    character.updateDisplay();
+    if (!EDITING) character.save(SLOT);
+}
+function loadAdders() {
+    for (const field in fieldEditType) {
+        if (fieldEditType[field] != 3) continue;
+        const box = document.getElementById("text-"+nameToIndex[field]).parentElement;
+        const adder = document.createElement("button");
+        adder.classList = "adder btn btn-light increment";
+        adder.innerHTML = `+`;
+        const subtractor = document.createElement("button");
+        subtractor.classList = "subtractor btn btn-light increment";
+        subtractor.innerHTML = `-`;
+        adder.addEventListener("click",(e)=>{e.stopPropagation();addOrSubtractClicked(field,1)});
+        subtractor.addEventListener("click",(e)=>{e.stopPropagation();addOrSubtractClicked(field,-1)});
+        box.appendChild(adder);
+        box.appendChild(subtractor);
+    }
+}
 function toggleEditing() {
     if (EDITING) {
         EDITING = false;
         character.save(SLOT);
-        UNSAVED_CONTENT = false;
         EDITING_ELEMENT = null;
         document.getElementById("edit-icon").style.display = "";
         document.getElementById("done-edit-icon").style.display = "none";
         document.getElementById("topRightSecondButton").style.display = "none";
     } else {
         EDITING = true;
-        UNSAVED_CONTENT = false;
         EDITING_ELEMENT = null;
         document.getElementById("edit-icon").style.display = "none";
         document.getElementById("done-edit-icon").style.display = "";
@@ -148,8 +163,8 @@ function toggleEditing() {
     loadUI();
 }
 window.addEventListener('beforeunload', (event) => {
-    if (UNSAVED_CONTENT) {
+    if (getChecksum(character.data) != currentChecksum) {
         event.preventDefault();
-        event.returnValue = ''; 
+        event.returnValue = '';
     }
 });
