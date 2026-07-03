@@ -30,7 +30,8 @@ function addBonusEditor(bonus = {}) {
             <div>
                 <input
                     class="form-control bonus-name"
-                    value="${bonus.bonusTarget ?? ""}">
+                    list="bonusTargetOptions"
+                    value="${bonusTargetOptionsKV[bonus.bonusTarget] ?? ""}">
             </div>
             <div>
                 <div class="selected-tags d-flex flex-wrap gap-1 mb-2"></div>
@@ -85,7 +86,7 @@ addBonusBtn.addEventListener("click", () => {
 function getBonusesFromModal() {
     const bonusDict = {};
     bonusList.querySelectorAll(".bonus-editor").forEach(editor => {
-        const target = editor.querySelector(".bonus-name").value.trim();
+        const target = bonusTargetOptions[editor.querySelector(".bonus-name").value.trim()];
         if (!target) return;
         bonusDict[target] = editor._selectedBonuses;
     });
@@ -168,7 +169,6 @@ function renderMultiSelect(editor) {
         setTimeout(() => menu.style.display = "none", 100);
     };
 }
-
 const bonusOptions = {
     "pb":"Proficiency Bonus",
     "str": "Strength",
@@ -197,3 +197,47 @@ const bonusOptions = {
     "survival":"Survival",
     "dexMax2":"Dexterity (Max +2)",
 };
+const bonusTargetOptions = {
+    "Strength": "str",
+    "Dexterity": "dex",
+    "Constitution": "con",
+    "Intelligence": "int",
+    "Wisdom": "wis",
+    "Charisma": "cha",
+    "Acrobatics": "acrobatics",
+    "Animal Handling": "animalHandling",
+    "Arcana": "arcana",
+    "Athletics": "athletics",
+    "Deception": "deception",
+    "History": "history",
+    "Insight": "insight",
+    "Intimidation": "intimidation",
+    "Investigation": "investigation",
+    "Medicine": "medicine",
+    "Nature": "nature",
+    "Perception": "perception",
+    "Performance": "performance",
+    "Persuasion": "persuasion",
+    "Religion": "religion",
+    "Sleight of Hand": "sleightOfHand",
+    "Stealth": "stealth",
+    "Survival": "survival",
+    "Weapon 1 Attack": "attackBonus1",
+    "Weapon 2 Attack": "attackBonus2",
+    "Weapon 3 Attack": "attackBonus3",
+    "Weapon 1 Damage": "attackDamageBonus1",
+    "Weapon 2 Damage": "attackDamageBonus2",
+    "Weapon 3 Damage": "attackDamageBonus3",
+    "Initiative": "initiative",
+    "Armor Class (AC)": "ac",
+    "Passive Perception": "passivePerception",
+    "All Skills": "SKILLS",
+    "All Saving Throws": "SAVES",
+    "All Skills and Saves": "SKILLS_AND_SAVES"
+};
+const bonusTargetOptionsKV = Object.fromEntries(Object.entries(bonusTargetOptions).map(o=>[o[1],o[0]]));
+for (const i in bonusTargetOptions) {
+    const opt = document.createElement("option");
+    opt.innerHTML = i;
+    document.getElementById("bonusTargetOptions").appendChild(opt);
+}

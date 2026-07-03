@@ -91,7 +91,7 @@ function toggleDot(name, el) {
 }
 function loadBasicEditing() {
     for (const field in fieldEditType) {
-        if (fieldEditType[field] != 0 && fieldEditType[field] != 1) continue;
+        if (![0,1,2].includes(fieldEditType[field])) continue;
         const box = document.getElementById("text-"+nameToIndex[field]).parentElement;
         box.setAttribute("onclick", `onEdit("${field}",this,0)`);
         box.classList.add("editable-box");

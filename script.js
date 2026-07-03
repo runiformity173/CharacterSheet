@@ -1,6 +1,9 @@
 function rawToBonus(raw) {
     return Math.floor(raw/2)-5;
 }
+function baseToDisplay(bonus) {
+    return bonus == 0 ? "~" : bonusToDisplay(bonus);
+}
 function bonusToDisplay(bonus) {
     return bonus < 0 ? String(bonus) : "+"+String(bonus);
 }
@@ -78,11 +81,12 @@ class Character {
         }
         this.bonuses["pb"] = this.data.pb;
         for (const skill in skillToAbilityScore) {
-            this.bonuses[skill] = this.bonuses[skillToAbilityScore[skill]];
+            this.bonuses[skill] = this.data[skill] ?? 0;
+            if (!EDITING) this.bonuses[skill] += this.bonuses[skillToAbilityScore[skill]];
         }
-        this.bonuses["initiative"] = this.bonuses["dex"];
         this.bonuses["ac"] = this.data.ac;
-        this.bonuses["passivePerception"] = 10;
+        this.bonuses["passivePerception"] = this.data.passivePerception || 0;
+        this.bonuses["initiative"] = this.data.initiative || 0;
         for (let i = 1;i<=this.data.weapons.length;i++) {
             const weapon = this.data.weapons[i-1];
             this.bonuses["attackBonus"+i] = weapon.attackBonus;
@@ -91,7 +95,7 @@ class Character {
     }
     calculateDots() {
         for (const prof of this.data.proficiencies) {
-            this.bonuses[prof] += this.bonuses["pb"];
+            if (!EDITING) this.bonuses[prof] += this.bonuses["pb"];
             this.dots[prof] = 1;
         }
         for (const res of ["Success","Failure"]) {
@@ -104,7 +108,7 @@ class Character {
     calculateAdditionalBonuses() {
         this.bonuses["dexMax2"] = Math.min(this.bonuses["dex"],2)
         for (const modified in this.data.additionalBonuses) {
-            if (modified == "ALL") continue;
+            let modifiedList = [modified];
             if (modified == "SKILLS") continue;
             if (modified == "SAVES") continue;
             if (modified == "SKILLS_AND_SAVES") continue;
@@ -117,24 +121,31 @@ class Character {
                 }
             }
         }
+        this.bonuses["passivePerception"] += this.bonuses["perception"] + 10;
+        this.bonuses["initiative"] = this.bonuses["dex"];
     }
     displayBonuses() {
         for (const skill in skillToAbilityScore) {
-            this.display[skill] = bonusToDisplay(this.bonuses[skill]);
+            this.display[skill] = (EDITING ? baseToDisplay : bonusToDisplay)(this.bonuses[skill]);
         }
-        this.display.initiative = bonusToDisplay(this.bonuses["initiative"]);
-        this.display.ac = this.bonuses["ac"];
-        this.bonuses["passivePerception"] += this.bonuses["perception"];
-        this.display.passivePerception = this.bonuses["passivePerception"];
+        if (EDITING) {
+            this.display.initiative = baseToDisplay(this.bonuses["initiative"]);
+            this.display.ac = this.bonuses["ac"];
+            this.display.passivePerception = baseToDisplay(this.bonuses["passivePerception"]);
+        } else {
+            this.display.initiative = bonusToDisplay(this.bonuses["initiative"]);
+            this.display.ac = this.bonuses["ac"];
+            this.display.passivePerception = this.bonuses["passivePerception"];
+        }
     }
     displayWeapons() {
         for (let i = 1;i<=this.data.weapons.length;i++) {
             const weapon = this.data.weapons[i-1];
             this.display["attackName"+i] = weapon.attackName;
-            this.display["attackBonus"+i] = bonusToDisplay(this.bonuses["attackBonus"+i]);
+            this.display["attackBonus"+i] = (EDITING ? baseToDisplay : bonusToDisplay)(this.bonuses["attackBonus"+i]);
             let damageString = weapon.attackDamageDice;
-            if (this.bonuses["attackDamageBonus"+i] != 0)
-                damageString += bonusToDisplay(this.bonuses["attackDamageBonus"+i]);
+            if (this.bonuses["attackDamageBonus"+i] != 0 || EDITING)
+                damageString += (EDITING ? baseToDisplay : bonusToDisplay)(this.bonuses["attackDamageBonus"+i]);
             damageString += " " + weapon.attackDamageType;
             this.display["attackDamage"+i] = damageString;
         }
@@ -151,7 +162,7 @@ class Character {
         this.calculateClassString();
         this.calculateBonuses();
         this.calculateDots();
-        this.calculateAdditionalBonuses();
+        if (!EDITING) this.calculateAdditionalBonuses();
         this.displayBonuses();
         this.displayWeapons();
         // calculate additional bonuses here
