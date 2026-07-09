@@ -109,7 +109,7 @@ function loadBasicEditing() {
 function loadAlwaysEditing() {
     if (!EDITING) {
         for (const field in fieldEditType) {
-            if (fieldEditType[field] != 1 && fieldEditType[field] != 3) continue;
+            if (![1,3,4].includes(fieldEditType[field])) continue;
             const box = document.getElementById("text-"+nameToIndex[field]).parentElement;
             box.setAttribute("onclick", `onEdit("${field}",this,0)`);
             box.classList.add("editable-box");
@@ -131,7 +131,7 @@ function addOrSubtractClicked(field, mult) {
 }
 function loadAdders() {
     for (const field in fieldEditType) {
-        if (fieldEditType[field] != 3) continue;
+        if (![3,4].includes(fieldEditType[field])) continue;
         const box = document.getElementById("text-"+nameToIndex[field]).parentElement;
         const adder = document.createElement("button");
         adder.classList = "adder btn btn-light increment";
@@ -163,7 +163,7 @@ function toggleEditing() {
     loadUI();
 }
 window.addEventListener('beforeunload', (event) => {
-    if (getChecksum(character.data) != currentChecksum) {
+    if (SLOT != null && getChecksum(character.data) != currentChecksum) {
         event.preventDefault();
         event.returnValue = '';
     }

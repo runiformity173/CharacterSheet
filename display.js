@@ -100,7 +100,7 @@ document.querySelector('.sheet-pages').addEventListener("mouseup",function(e) {
     console.log([startX/rect.width,startY/rect.height % 1, Math.floor(startY/rect.height),x/rect.width,y/rect.height % 1, Math.floor(y/rect.height),"left-centered-box-half"]);
 });
 window.addEventListener("resize", function () {
-    loadUI();
+    if (SLOT != null) loadUI();
 })
 // document.addEventListener('selectstart', (e) => {
 //   e.preventDefault();
