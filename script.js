@@ -122,7 +122,7 @@ class Character {
             }
         }
         this.bonuses["passivePerception"] += this.bonuses["perception"] + 10;
-        this.bonuses["initiative"] = this.bonuses["dex"];
+        this.bonuses["initiative"] += this.bonuses["dex"];
     }
     displayBonuses() {
         for (const skill in skillToAbilityScore) {
